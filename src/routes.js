@@ -1,17 +1,10 @@
 import { Router } from "express"
+import { userController } from "./controllers/userController.js"
 
 const routes = Router()
 
-const database = ['Aline']
+routes.get('/users', userController.listarUsuario) 
 
-routes.get('/users', (request, response) => {
-    return response.status(200).json(database)
-})
-
-routes.post('/users', (request, response) => {
-    const { name } = request.body
-    database.push(name)
-return response.status(201).json({'mensagem': `Usuário ${name} criado`})
-})
+routes.post('/users', userController.criarUsuario)
 
 export { routes }
